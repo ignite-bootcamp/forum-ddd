@@ -18,7 +18,7 @@ describe('Edit Question', () => {
 
     await sut.execute({
       authorId: newQuestion.authorId.toValue(),
-      questionId: newQuestion.id,
+      questionId: newQuestion.id.toString(),
       content: newQuestion.content,
       title: 'edited-title',
     });

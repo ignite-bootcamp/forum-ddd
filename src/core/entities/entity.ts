@@ -4,8 +4,8 @@ export class Entity<T> {
   private _id: UniqueEntityID;
   protected props: T;
 
-  get id(): string {
-    return this._id.toValue();
+  get id() {
+    return this._id;
   }
 
   protected constructor(props: T, id?: UniqueEntityID) {

@@ -18,7 +18,7 @@ describe('Edit Answer', () => {
 
     await sut.execute({
       authorId: newAnswer.authorId.toValue(),
-      answerId: newAnswer.id,
+      answerId: newAnswer.id.toString(),
       content: 'new-content',
     });
 
