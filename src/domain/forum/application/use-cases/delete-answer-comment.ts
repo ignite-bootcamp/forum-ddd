@@ -1,5 +1,6 @@
 import { Either, left, right } from '@/core/either';
 import { AnswerCommentsRepository } from '@/domain/forum/application/repositories/answer-comments-repository';
+import { ResourceNotFoundError } from './errors/resource-not-found-error';
 
 interface DeleteAnswerCommentUseCaseRequest {
   authorId: string;
@@ -19,7 +20,7 @@ export class DeleteAnswerCommentUseCase {
       await this.answerCommentsRepository.findById(answerCommentId);
 
     if (!answerComment) {
-      throw left('Answer comment not found.');
+      throw left(new ResourceNotFoundError());
     }
 
     if (answerComment.authorId.toString() !== authorId) {
