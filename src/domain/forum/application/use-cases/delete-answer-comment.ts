@@ -1,6 +1,7 @@
 import { Either, left, right } from '@/core/either';
 import { AnswerCommentsRepository } from '@/domain/forum/application/repositories/answer-comments-repository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { NotAllowedError } from './errors/not-allowed-error';
 
 interface DeleteAnswerCommentUseCaseRequest {
   authorId: string;
@@ -24,7 +25,7 @@ export class DeleteAnswerCommentUseCase {
     }
 
     if (answerComment.authorId.toString() !== authorId) {
-      throw left('Not allowed');
+      throw left(new NotAllowedError());
     }
 
     await this.answerCommentsRepository.delete(answerComment);
