@@ -9,4 +9,11 @@ export class InMemoryQuestionAttachmentRepository
   async findManyByQuestionId(questionId: string) {
     return this.items.filter(item => item.questionId.toString() === questionId);
   }
+
+  async deleteManyByQuestionId(questionId: string): Promise<void> {
+    const itemIndex = this.items.findIndex(
+      item => item.questionId.toString() === questionId,
+    );
+    this.items.splice(itemIndex, 1);
+  }
 }
