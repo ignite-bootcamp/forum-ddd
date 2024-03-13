@@ -3,13 +3,19 @@ import { makeQuestion } from 'test/factories/make-question';
 import { DeleteQuestionUseCase } from './delete-question';
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 import { NotAllowedError } from './errors/not-allowed-error';
+import { InMemoryQuestionAttachmentRepository } from 'test/repositories/in-memory-question-attachment-repository';
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentRepository;
 let sut: DeleteQuestionUseCase;
 
 describe('Delete Question', () => {
   beforeEach(() => {
-    inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
+    inMemoryQuestionAttachmentsRepository =
+      new InMemoryQuestionAttachmentRepository();
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+      inMemoryQuestionAttachmentsRepository,
+    );
     sut = new DeleteQuestionUseCase(inMemoryQuestionsRepository);
   });
 
