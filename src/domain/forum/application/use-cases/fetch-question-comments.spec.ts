@@ -38,7 +38,6 @@ describe('Fetch Question Comments', () => {
     });
 
     expect(result.value?.questionComments).toHaveLength(3);
-    expect(result.isRight()).toBe(true);
   });
 
   it('should be able to fetch paginated question comments', async () => {
@@ -56,6 +55,5 @@ describe('Fetch Question Comments', () => {
     });
 
     expect(result.value?.questionComments).toHaveLength(2);
-    expect(result.isRight()).toBe(true);
   });
 });

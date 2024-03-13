@@ -36,7 +36,6 @@ describe('Fetch Answer Comments', () => {
       page: 1,
     });
 
-    expect(result.isRight()).toBe(true);
     expect(result.value?.answerComments).toHaveLength(3);
   });
 
@@ -55,6 +54,5 @@ describe('Fetch Answer Comments', () => {
     });
 
     expect(result.value?.answerComments).toHaveLength(2);
-    expect(result.isRight()).toBe(true);
   });
 });

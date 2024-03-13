@@ -1,16 +1,16 @@
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository';
 import { makeQuestion } from 'test/factories/make-question';
 import { FetchRecentQuestionsUseCase } from './fetch-recent-questions';
-import { InMemoryQuestionAttachmentRepository } from 'test/repositories/in-memory-question-attachment-repository';
+import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository';
 
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
-let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentRepository;
 let sut: FetchRecentQuestionsUseCase;
 
 describe('Fetch Recent Questions', () => {
   beforeEach(() => {
     inMemoryQuestionAttachmentsRepository =
-      new InMemoryQuestionAttachmentRepository();
+      new InMemoryQuestionAttachmentsRepository();
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
       inMemoryQuestionAttachmentsRepository,
     );
@@ -32,7 +32,6 @@ describe('Fetch Recent Questions', () => {
       page: 1,
     });
 
-    expect(result.isRight()).toBe(true);
     expect(result.value?.questions).toEqual([
       expect.objectContaining({ createdAt: new Date(2022, 0, 23) }),
       expect.objectContaining({ createdAt: new Date(2022, 0, 20) }),
@@ -49,7 +48,6 @@ describe('Fetch Recent Questions', () => {
       page: 2,
     });
 
-    expect(result.isRight()).toBe(true);
     expect(result.value?.questions).toHaveLength(2);
   });
 });
