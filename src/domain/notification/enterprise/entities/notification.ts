@@ -23,7 +23,7 @@ export class Notification extends Entity<NotificationProps> {
     return this.props.recipientId;
   }
 
-  static crete(
+  static create(
     props: Optional<NotificationProps, 'createdAt'>,
     id?: UniqueEntityID,
   ) {
